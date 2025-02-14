@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Flipper</title>
+    <style>body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        transition: background 0.5s ease;
+    }
+    
+    .container {
+        margin-top: 20%;
+        padding: 20px;
+        background: white;
+        display: inline-block;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+        font-size: 24px;
+    }
+    
+    p {
+        font-size: 18px;
+        margin: 10px 0;
+    }
+    
+    button {
+        font-size: 16px;
+        padding: 10px 20px;
+        background: #3498db;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+    
+    button:hover {
+        background: #2980b9;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Color Flipper</h1>
+        <p>Background Color: <span id="colorCode">#FFFFFF</span></p>
+        <button id="flipColor">Change Color</button>
+    </div>
+
+    <script>const button = document.getElementById("flipColor");
+        const colorCode = document.getElementById("colorCode");
+        
+        button.addEventListener("click", function() {
+            let randomColor = getRandomColor();
+            document.body.style.backgroundColor = randomColor;
+            colorCode.textContent = randomColor;
+        });
+        
+        function getRandomColor() {
+            let letters = "0123456789ABCDEF";
+            let color = "#";
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+        </script>
+</body>
+</html>

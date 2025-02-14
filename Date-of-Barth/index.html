@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Age Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="date"] {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 8px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #007bff;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #currentAge {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <header>
+            <h1>AGE CALCULATOR</h1>
+        </header>
+
+        <div>
+            <label>Enter your Date of Birth</label><br>
+            <input id="inputDob" type="date" value="2000-01-01" />
+        </div>
+        <br />
+
+        <!-- Take the date from which age is to be calculated -->
+        <div>
+            <label>Current Date</label><br>
+            <input id="cdate" type="date" value="" />
+        </div>
+        <br />
+
+        <button type="button" onclick="getDOB()">
+            Calculate
+        </button>
+        <br />
+        <div id="currentAge"></div>
+        <script>function getDOB() {
+
+                const dobInput = document.getElementById('inputDob').value;
+                const currentDateInput = document.getElementById('cdate').value;
+
+
+                if (!dobInput || !currentDateInput) {
+                    alert('Please enter both Date of Birth and Current Date.');
+                    return;
+                }
+
+                const dob = new Date(dobInput);
+                const currentDate = new Date(currentDateInput);
+
+                let age = currentDate.getFullYear() - dob.getFullYear();
+                const monthDifference = currentDate.getMonth() - dob.getMonth();
+
+                if (monthDifference < 0 || (monthDifference === 0 && currentDate.getDate() < dob.getDate())) {
+                    age--;
+                }
+
+                document.getElementById('currentAge').textContent = `Your age is ${age} years.`;
+            }
+        </script>
+    </div>
+</body>
+
+</html>
